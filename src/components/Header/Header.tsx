@@ -5,7 +5,7 @@ import {
     IconLanguage,
     IconLogo,
     IconMessage,
-    ImgAvatar,
+    ImgUserPic,
 } from '../../constants/images';
 import styles from './Header.module.css';
 
@@ -23,10 +23,10 @@ export function Header() {
                 <img src={IconFavorite} alt='favorite' />
                 <img src={IconMessage} alt='message' />
                 <div className={styles.profile}>
-                    <h4>Евгений</h4>
+                    <h4>Владислав</h4>
                     <img
                         className={styles.avatar}
-                        src={ImgAvatar}
+                        src={ImgUserPic}
                         alt='avatar'
                     />
                     <img src={IconArrow} alt='arrow' />

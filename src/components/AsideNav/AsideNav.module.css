@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 3px 0px 8px 0px rgba(0, 0, 0, 0.03);
+    padding-block: 2rem;
+    width: 17rem;
+    min-width: 13rem;
+    height: 100vh;
+    gap: 5rem;
+}
+
+.title {
+    color: var(--textSecondary);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+    text-align: left;
+}
+
+.selectedTitle {
+    color: var(--text);
+    text-decoration-line: underline;
+}
+
+.navItem {
+    display: flex;
+    column-gap: 1.5rem;
+    align-items: center;
+}

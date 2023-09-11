@@ -5,6 +5,7 @@ import { GetUsers } from '../../services/requests';
 import { UserCard } from '../../components/UserCard';
 import { EMAIL_REGEX } from '../../constants';
 import { IconPlus } from '../../constants/images';
+import { AsideNav } from '../../components/AsideNav';
 
 //* Display main page with search bar, found users, team members
 export function MainPage() {
@@ -61,8 +62,8 @@ export function MainPage() {
         }
     }
 
-    // Remove a user from the team by filtering out their ID
     function removeUser(id: number) {
+        // Remove a user from the team by filtering out their ID
         setTeam((prev) => prev.filter((user) => user.id !== id));
     }
 
@@ -72,6 +73,7 @@ export function MainPage() {
 
     return (
         <div className={mainStyles.pageContainer}>
+            <AsideNav />
             <div className={mainStyles.container}>
                 <h1>Команда организации</h1>
                 <h4>
@@ -111,7 +113,7 @@ export function MainPage() {
                     searchValue &&
                     (searchUsers.length ? (
                         // List of found users
-                        <section className={mainStyles.scrollResults}>
+                        <section className={mainStyles.searchResultsContainer}>
                             <div className={mainStyles.searchResults}>
                                 {searchUsers.map((user) => (
                                     <div
@@ -146,13 +148,11 @@ export function MainPage() {
                     <h1>В команде на данный момент нет участников</h1>
                 )}
                 {/* Save team button */}
-                <button
-                    className={mainStyles.button}
-                    onClick={saveTeam}
-                    disabled={team.length === 0}
-                >
-                    <h4 className={mainStyles.buttonText}>Сохранить</h4>
-                </button>
+                {team.length !== 0 && (
+                    <button className={mainStyles.button} onClick={saveTeam}>
+                        <h4 className={mainStyles.buttonText}>Сохранить</h4>
+                    </button>
+                )}
             </div>
         </div>
     );

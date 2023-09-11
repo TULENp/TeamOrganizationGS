@@ -1,6 +1,6 @@
 import cardStyles from './UserCard.module.css';
 import { TUser } from '../../types';
-import { IconCross } from '../../constants/images';
+import { IconCross, ImgUserPic } from '../../constants/images';
 
 interface UserCardProps {
     user: TUser;
@@ -17,7 +17,7 @@ export function UserCard({ user, onClick, inTeam }: UserCardProps) {
                 <img
                     className={cardStyles.avatar}
                     // hardcode
-                    src='/public/favicon.svg'
+                    src={ImgUserPic}
                     alt='avatar'
                 />
                 {/* info */}

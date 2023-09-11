@@ -17,17 +17,16 @@
     column-gap: 2rem;
 }
 
-.scrollResults {
+.searchResultsContainer {
     border-radius: 10px;
     border: 1px solid var(--text);
     padding: 1rem;
-    width: auto;
 }
 
 .searchResults {
     max-height: 12rem;
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
     gap: 1rem;
     overflow-y: scroll;
 
@@ -40,6 +39,7 @@
     /* Chrome, Safari */
     &::-webkit-scrollbar {
         width: 8px;
+        height: 8px;
     }
 
     &::-webkit-scrollbar-thumb {
