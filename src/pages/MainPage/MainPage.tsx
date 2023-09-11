@@ -69,6 +69,7 @@ export function MainPage() {
 
     function saveTeam() {
         console.log('Команда организации\n', team);
+        alert('Команда сохранена');
     }
 
     return (
