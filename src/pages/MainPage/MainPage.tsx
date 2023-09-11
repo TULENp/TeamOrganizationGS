@@ -71,85 +71,89 @@ export function MainPage() {
     }
 
     return (
-        <div className={mainStyles.container}>
-            <h1>Команда организации</h1>
-            <h4>
-                Владельцы команд могут добавлять участников в команду своей
-                организации, добавляя их адреса электронной почты. У них должна
-                быть учетная запись на сайте.
-            </h4>
-            {/* Search bar */}
-            <div>
-                <h4 className={mainStyles.searchLabel}>
-                    Введите e-mail участника
+        <div className={mainStyles.pageContainer}>
+            <div className={mainStyles.container}>
+                <h1>Команда организации</h1>
+                <h4>
+                    Владельцы команд могут добавлять участников в команду своей
+                    организации, добавляя их адреса электронной почты. У них
+                    должна быть учетная запись на сайте.
                 </h4>
-                <section className={mainStyles.searchBarContainer}>
-                    <input
-                        className={mainStyles.search}
-                        type='search'
-                        placeholder='example@gmail.com'
-                        value={searchValue}
-                        onChange={(e) => setSearchValue(e.target.value)}
-                    />
-                    {/* Add user button */}
-                    <button
-                        className={mainStyles.button}
-                        onClick={addUser}
-                        disabled={!EMAIL_REGEX.test(searchValue)}
-                    >
-                        <img src={IconPlus} alt='plus' />
-                        <h4 className={mainStyles.buttonText}>
-                            Добавить участника
-                        </h4>
-                    </button>
-                </section>
-            </div>
-            {isLoading ? (
-                <h2 className={mainStyles.loading}>Загрузка</h2>
-            ) : (
-                searchValue &&
-                (searchUsers.length ? (
-                    // List of found users
-                    <section className={mainStyles.scrollResults}>
-                        <div className={mainStyles.searchResults}>
-                            {searchUsers.map((user) => (
-                                <div
-                                    onClick={() => setSearchValue(user.email)}
-                                    key={user.id}
-                                >
-                                    <UserCard user={user} />
-                                </div>
-                            ))}
-                        </div>
+                {/* Search bar */}
+                <div>
+                    <h4 className={mainStyles.searchLabel}>
+                        Введите e-mail участника
+                    </h4>
+                    <section className={mainStyles.searchBarContainer}>
+                        <input
+                            className={mainStyles.search}
+                            type='search'
+                            placeholder='example@gmail.com'
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                        />
+                        {/* Add user button */}
+                        <button
+                            className={mainStyles.button}
+                            onClick={addUser}
+                            disabled={!EMAIL_REGEX.test(searchValue)}
+                        >
+                            <img src={IconPlus} alt='plus' />
+                            <h4 className={mainStyles.buttonText}>
+                                Добавить участника
+                            </h4>
+                        </button>
+                    </section>
+                </div>
+                {isLoading ? (
+                    <h2 className={mainStyles.loading}>Загрузка</h2>
+                ) : (
+                    searchValue &&
+                    (searchUsers.length ? (
+                        // List of found users
+                        <section className={mainStyles.scrollResults}>
+                            <div className={mainStyles.searchResults}>
+                                {searchUsers.map((user) => (
+                                    <div
+                                        onClick={() =>
+                                            setSearchValue(user.email)
+                                        }
+                                        key={user.id}
+                                    >
+                                        <UserCard user={user} />
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+                    ) : (
+                        <h2>Пользователь с такой почтой не найден</h2>
+                    ))
+                )}
+
+                {/* List of team (added members) */}
+                {team.length ? (
+                    <section className={mainStyles.usersContainer}>
+                        {team.map((user) => (
+                            <UserCard
+                                user={user}
+                                key={user.id}
+                                onClick={() => removeUser(user.id)}
+                                inTeam
+                            />
+                        ))}
                     </section>
                 ) : (
-                    <h2>Пользователь с такой почтой не найден</h2>
-                ))
-            )}
-
-            {/* List of team (added members) */}
-            {team.length ? (
-                <section className={mainStyles.usersContainer}>
-                    {team.map((user) => (
-                        <UserCard
-                            user={user}
-                            key={user.id}
-                            onClick={() => removeUser(user.id)}
-                            inTeam
-                        />
-                    ))}
-                </section>
-            ) : (
-                <h1>В команде на данный момент нет участников</h1>
-            )}
-            {/* Save team button */}
-            <button
-                className={mainStyles.button}
-                onClick={saveTeam}
-                disabled={team.length === 0}
-            >
-                <h4 className={mainStyles.buttonText}>Сохранить</h4>
-            </button>
+                    <h1>В команде на данный момент нет участников</h1>
+                )}
+                {/* Save team button */}
+                <button
+                    className={mainStyles.button}
+                    onClick={saveTeam}
+                    disabled={team.length === 0}
+                >
+                    <h4 className={mainStyles.buttonText}>Сохранить</h4>
+                </button>
+            </div>
         </div>
     );
 }

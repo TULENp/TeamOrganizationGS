@@ -37,3 +37,12 @@ h5 {
 	font-weight: 500;
 	line-height: 120%;
 }
+
+header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-block: 1rem;
+	box-shadow: 0px 1px 0px 0px #DFE6EB;
+	padding-inline: 3rem;
+}
