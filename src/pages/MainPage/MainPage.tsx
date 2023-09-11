@@ -61,6 +61,11 @@ export function MainPage() {
         }
     }
 
+    // Remove a user from the team by filtering out their ID
+    function removeUser(id: number) {
+        setTeam((prev) => prev.filter((user) => user.id !== id));
+    }
+
     function saveTeam() {
         console.log('Команда организации\n', team);
     }
@@ -105,25 +110,33 @@ export function MainPage() {
                 searchValue &&
                 (searchUsers.length ? (
                     // List of found users
-                    <section className={mainStyles.usersContainer}>
-                        {searchUsers.map((user) => (
-                            <div
-                                onClick={() => setSearchValue(user.email)}
-                                key={user.id}
-                            >
-                                <UserCard user={user} />
-                            </div>
-                        ))}
+                    <section className={mainStyles.scrollResults}>
+                        <div className={mainStyles.searchResults}>
+                            {searchUsers.map((user) => (
+                                <div
+                                    onClick={() => setSearchValue(user.email)}
+                                    key={user.id}
+                                >
+                                    <UserCard user={user} />
+                                </div>
+                            ))}
+                        </div>
                     </section>
                 ) : (
                     <h2>Пользователь с такой почтой не найден</h2>
                 ))
             )}
 
+            {/* List of team (added members) */}
             {team.length ? (
                 <section className={mainStyles.usersContainer}>
                     {team.map((user) => (
-                        <UserCard user={user} key={user.id} />
+                        <UserCard
+                            user={user}
+                            key={user.id}
+                            onClick={() => removeUser(user.id)}
+                            inTeam
+                        />
                     ))}
                 </section>
             ) : (

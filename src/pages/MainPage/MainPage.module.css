@@ -12,6 +12,37 @@
     gap: 1.5rem;
 }
 
+.scrollResults {
+    border-radius: 10px;
+    border: 1px solid var(--text);
+    padding: 1rem;
+    width: auto;
+}
+
+.searchResults {
+    max-height: 12rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow-y: scroll;
+
+    /* scrollbar styling */
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--textSecondary);
+
+    /* Chrome, Safari */
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--textSecondary);
+        border-radius: 4px;
+    }
+}
+
 .searchBarContainer {
     display: flex;
     column-gap: 1rem;

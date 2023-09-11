@@ -1,12 +1,15 @@
 import cardStyles from './UserCard.module.css';
 import { TUser } from '../../types';
+import { IconCross } from '../../constants/images';
 
 interface UserCardProps {
     user: TUser;
+    onClick?: () => void;
+    inTeam?: boolean;
 }
 
-//* Display user card with avatar, email, name and city
-export function UserCard({ user }: UserCardProps) {
+//* Display user card with avatar, email, name, city and "remove" icon button
+export function UserCard({ user, onClick, inTeam }: UserCardProps) {
     return (
         <article className={cardStyles.cardWrapper}>
             <div className={cardStyles.cardContent}>
@@ -24,6 +27,15 @@ export function UserCard({ user }: UserCardProps) {
                     <h5>{user.address.city}</h5>
                 </div>
             </div>
+            {/* remove button */}
+            {inTeam && (
+                <img
+                    src={IconCross}
+                    alt='close'
+                    className={cardStyles.cross}
+                    onClick={onClick}
+                />
+            )}
         </article>
     );
 }

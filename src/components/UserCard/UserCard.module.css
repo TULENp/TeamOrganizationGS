@@ -35,3 +35,7 @@
     align-items: flex-start;
     gap: 0.5rem;
 }
+
+.cross {
+    align-self: flex-start;
+}
